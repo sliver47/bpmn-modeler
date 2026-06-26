@@ -1,0 +1,15 @@
+{
+  "type": "default",
+  "components": [
+    {
+      "label": "Name",
+      "type": "textfield",
+      "layout": {
+        "row": "Row_1",
+        "columns": null
+      },
+      "id": "Field_name",
+      "key": "name"
+    }
+  ]
+}

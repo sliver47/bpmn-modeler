@@ -1,0 +1,171 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	overflow: hidden;
+	font-family: var(--vscode-font-family);
+	background: var(--vscode-editor-background);
+}
+
+#app {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+.toolbar {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 6px 10px;
+	border-bottom: 1px solid var(--vscode-panel-border, #444);
+	background: var(--vscode-editorGroupHeader-tabsBackground);
+	color: var(--vscode-foreground);
+	flex: 0 0 auto;
+}
+
+.toolbar .title {
+	font-weight: 600;
+	margin-right: 4px;
+}
+
+.toolbar .hint {
+	font-size: 12px;
+	opacity: 0.65;
+}
+
+.toolbar .status {
+	margin-left: auto;
+	font-size: 12px;
+	opacity: 0.8;
+}
+
+.toolbar .status.error {
+	color: var(--vscode-errorForeground, #f48771);
+}
+
+#form-editor {
+	flex: 1 1 auto;
+	min-height: 0;
+	overflow: hidden;
+	/* form-js playground uses a light Carbon theme; keep its own background */
+	background: #fff;
+}
+
+/* The playground renders its own full layout; ensure it fills the host */
+#form-editor .fjs-pgl-root {
+	height: 100%;
+}
+
+/* Hide the bpmn.io / form-js watermark logo */
+#form-editor .fjs-powered-by,
+#form-editor .bjs-powered-by {
+	display: none !important;
+}
+
+/*
+ * Custom collapsible layout.
+ * We restructure the playground's 2x2 grid into two flex rows:
+ *   top    = Definition + Preview
+ *   bottom = Input + Output
+ * Each section header carries a collapse toggle.
+ */
+#form-editor .fjs-pgl-main {
+	display: flex !important;
+	flex-direction: column;
+}
+
+#form-editor .pgl-row {
+	display: flex;
+	flex: 1 1 0;
+	min-height: 0;
+	border-bottom: double 3px var(--color-section-border, #ccc) !important;
+}
+
+#form-editor .pgl-row-bottom {
+	border-bottom: none !important;
+}
+
+/* A row whose panels are all collapsed only takes its headers' height */
+#form-editor .pgl-row.all-collapsed {
+	flex: 0 0 auto;
+}
+
+/* Reset playground's nth-child borders; we manage borders ourselves */
+#form-editor .fjs-pgl-section {
+	flex: 1 1 0;
+	min-width: 0;
+	border: none !important;
+}
+
+/* Vertical divider between two side-by-side panels */
+#form-editor .pgl-row > .fjs-pgl-section + .fjs-pgl-section {
+	border-left: double 3px var(--color-section-border, #ccc) !important;
+}
+
+/* Header is a flex bar: [chevron] [title] */
+#form-editor .fjs-pgl-section > .header {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+}
+
+/* ---- Collapsed state: shrink to a thin vertical strip (vertical title) ---- */
+#form-editor .fjs-pgl-section.collapsed {
+	flex: 0 0 2.4em;
+	width: 2.4em;
+	overflow: hidden;
+}
+
+#form-editor .fjs-pgl-section.collapsed > .header {
+	flex-direction: column;
+	align-items: center;
+	justify-content: flex-start;
+	height: 100%;
+	width: 100%;
+	padding: 8px 0;
+	border-bottom: none;
+	box-sizing: border-box;
+}
+
+#form-editor .fjs-pgl-section.collapsed > .header .pgl-title {
+	writing-mode: vertical-rl;
+	white-space: nowrap;
+}
+
+#form-editor .fjs-pgl-section.collapsed .body {
+	display: none;
+}
+
+/* ---- When a whole row is collapsed, keep panels side by side as horizontal bars ---- */
+#form-editor .pgl-row.all-collapsed > .fjs-pgl-section.collapsed {
+	flex: 1 1 0;
+	width: auto;
+}
+
+#form-editor .pgl-row.all-collapsed > .fjs-pgl-section.collapsed > .header {
+	flex-direction: row;
+	align-items: center;
+	justify-content: flex-start;
+	height: auto;
+	padding: 0.2em 0.5em;
+}
+
+#form-editor .pgl-row.all-collapsed > .fjs-pgl-section.collapsed > .header .pgl-title {
+	writing-mode: horizontal-tb;
+}
+
+.pgl-collapse-btn {
+	border: none;
+	background: transparent;
+	color: inherit;
+	cursor: pointer;
+	font-size: 0.9em;
+	padding: 0 2px;
+	line-height: 1;
+	flex: 0 0 auto;
+}
+
+.pgl-collapse-btn:hover {
+	opacity: 0.7;
+}

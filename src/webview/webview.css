@@ -1,0 +1,178 @@
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	overflow: hidden;
+	font-family: var(--vscode-font-family);
+	color: var(--vscode-foreground);
+	background: var(--vscode-editor-background);
+}
+
+#app {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+}
+
+.toolbar {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	padding: 6px 10px;
+	border-bottom: 1px solid var(--vscode-panel-border, #444);
+	background: var(--vscode-editorGroupHeader-tabsBackground);
+	flex: 0 0 auto;
+}
+
+.toolbar .title {
+	font-weight: 600;
+	margin-right: 8px;
+}
+
+.toolbar button {
+	border: 1px solid var(--vscode-button-border, transparent);
+	background: var(--vscode-button-secondaryBackground, #3a3d41);
+	color: var(--vscode-button-secondaryForeground, #fff);
+	padding: 3px 10px;
+	border-radius: 3px;
+	cursor: pointer;
+	font-size: 12px;
+}
+
+.toolbar button:hover {
+	background: var(--vscode-button-secondaryHoverBackground, #45494e);
+}
+
+.toolbar button.primary {
+	background: var(--vscode-button-background, #0e639c);
+	color: var(--vscode-button-foreground, #fff);
+}
+
+.toolbar button.primary:hover {
+	background: var(--vscode-button-hoverBackground, #1177bb);
+}
+
+.toolbar .status {
+	margin-left: auto;
+	font-size: 12px;
+	opacity: 0.8;
+}
+
+.toolbar .status.error {
+	color: var(--vscode-errorForeground, #f48771);
+	opacity: 1;
+}
+
+.workspace {
+	display: flex;
+	flex: 1 1 auto;
+	min-height: 0;
+}
+
+.modeler-area {
+	display: flex;
+	flex-direction: column;
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+#canvas {
+	flex: 1 1 auto;
+	position: relative;
+	min-height: 0;
+	background: var(--vscode-editor-background);
+}
+
+.djs-container {
+	background-color: #ffffff;
+}
+
+/* Hide the bpmn.io watermark logo */
+.bjs-powered-by {
+	display: none !important;
+}
+
+#properties {
+	width: 320px;
+	flex: 0 0 320px;
+	border-left: 1px solid var(--vscode-panel-border, #444);
+	overflow: auto;
+	background: var(--vscode-sideBar-background, #252526);
+}
+
+.log-panel {
+	flex: 0 0 140px;
+	display: flex;
+	flex-direction: column;
+	border-top: 1px solid var(--vscode-panel-border, #444);
+	background: var(--vscode-panel-background, #1e1e1e);
+	transition: flex-basis 0.15s ease;
+}
+
+.log-panel.collapsed {
+	flex: 0 0 0;
+	height: 0;
+	overflow: hidden;
+	border-top: none;
+}
+
+.log-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 4px 10px;
+	font-size: 11px;
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.04em;
+	border-bottom: 1px solid var(--vscode-panel-border, #444);
+	color: var(--vscode-descriptionForeground);
+}
+
+.log-header button {
+	font-size: 11px;
+	padding: 1px 8px;
+}
+
+#log-body {
+	flex: 1;
+	overflow: auto;
+	padding: 4px 8px;
+	font-family: var(--vscode-editor-font-family);
+	font-size: 12px;
+	line-height: 1.4;
+}
+
+.log-line {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.log-info {
+	color: var(--vscode-foreground);
+}
+
+.log-warn {
+	color: var(--vscode-editorWarning-foreground, #cca700);
+}
+
+.log-error {
+	color: var(--vscode-errorForeground, #f48771);
+}
+
+/* properties panel theme tweaks for VS Code dark/light */
+.bio-properties-panel {
+	--color-grey-225-10-15: var(--vscode-foreground);
+	--color-grey-225-10-35: var(--vscode-descriptionForeground);
+	--color-grey-225-10-55: var(--vscode-panel-border, #555);
+	--color-grey-225-10-75: var(--vscode-input-border, #666);
+	--color-grey-225-10-80: var(--vscode-input-background);
+	--color-grey-225-10-90: var(--vscode-sideBar-background);
+	--color-grey-225-10-95: var(--vscode-editor-background);
+	--color-grey-225-10-97: var(--vscode-editor-background);
+	--color-white: var(--vscode-editor-background);
+	--color-black: var(--vscode-foreground);
+	--color-blue-205-100-45: var(--vscode-focusBorder, #007acc);
+	--color-blue-205-100-50: var(--vscode-button-background);
+	--color-blue-205-100-85: var(--vscode-list-hoverBackground);
+}

@@ -80,6 +80,9 @@ function enhanceLayout(): void {
 	const bottomRow = document.createElement('div');
 	bottomRow.className = 'pgl-row pgl-row-bottom';
 
+	// sections: [0] Definition, [1] Preview, [2] Input, [3] Output
+	sections[1].classList.add('pgl-section-preview');
+
 	topRow.appendChild(sections[0]);
 	topRow.appendChild(sections[1]);
 	bottomRow.appendChild(sections[2]);

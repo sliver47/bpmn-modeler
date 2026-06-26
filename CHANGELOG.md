@@ -18,3 +18,4 @@ All notable changes to the "bpmn-modeler" extension are documented in this file.
 
 - Requires VS Code / Cursor `^1.96.0`
 - DMN support is planned but not included in this release
+- bpmn.io canvas watermark is shown per [bpmn.io License](https://bpmn.io/license/)

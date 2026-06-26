@@ -2,6 +2,7 @@ import * as vscode from 'vscode';
 import { runDeploy } from '../services/deployService';
 import { logToOutput } from '../services/outputChannel';
 import { applyFullDocumentEdit } from '../utils/documentEdit';
+import { getFileIconPaths } from '../utils/fileIcons';
 import { buildWebviewHtml } from '../utils/webviewHtml';
 
 /**
@@ -24,6 +25,7 @@ export class BpmnEditorProvider implements vscode.CustomTextEditorProvider {
 			localResourceRoots: [vscode.Uri.joinPath(this.context.extensionUri, 'dist', 'webview')],
 		};
 
+		webviewPanel.iconPath = getFileIconPaths(this.context.extensionUri, 'bpmn');
 		webviewPanel.webview.html = this.getHtml(webviewPanel.webview);
 
 		const updateWebview = () => {

@@ -1,13 +1,38 @@
 {
   "name": "bpmn-modeler",
   "displayName": "BPMN Modeler",
-  "description": "BPMN, DMN, and Forms modeling in VS Code via webview (ported from Camunda Modeler)",
+  "description": "BPMN and Camunda Form modeling in VS Code via webview. Unofficial community extension — not affiliated with Camunda or bpmn.io.",
   "version": "0.0.1",
+  "publisher": "sliver47",
+  "license": "MIT",
+  "icon": "resources/logo.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sliver47/bpmn-modeler.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sliver47/bpmn-modeler/issues"
+  },
+  "homepage": "https://github.com/sliver47/bpmn-modeler#readme",
+  "keywords": [
+    "bpmn",
+    "bpmn2",
+    "camunda",
+    "form",
+    "workflow",
+    "process",
+    "modeler"
+  ],
+  "galleryBanner": {
+    "color": "#1e1e1e",
+    "theme": "dark"
+  },
   "engines": {
     "vscode": "^1.96.0"
   },
   "categories": [
-    "Other"
+    "Other",
+    "Visualization"
   ],
   "activationEvents": [
     "onCustomEditor:bpmn-modeler.bpmnEditor",
@@ -24,7 +49,11 @@
         ],
         "extensions": [
           ".bpmn"
-        ]
+        ],
+        "icon": {
+          "light": "resources/icons/light/bpmn.svg",
+          "dark": "resources/icons/dark/bpmn.svg"
+        }
       },
       {
         "id": "camunda-form",
@@ -34,7 +63,11 @@
         ],
         "extensions": [
           ".form"
-        ]
+        ],
+        "icon": {
+          "light": "resources/icons/light/form.svg",
+          "dark": "resources/icons/dark/form.svg"
+        }
       }
     ],
     "commands": [
@@ -236,7 +269,7 @@
   "devDependencies": {
     "@types/mocha": "^10.0.10",
     "@types/node": "24.x",
-    "@types/vscode": "^1.125.0",
+    "@types/vscode": "^1.96.0",
     "@vscode/test-cli": "^0.0.15",
     "@vscode/test-electron": "^3.0.0",
     "css-loader": "^7.1.4",

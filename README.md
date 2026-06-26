@@ -2,6 +2,8 @@
 
 Webview-based BPMN and Camunda Form editor for VS Code / Cursor — a lightweight alternative to the [Camunda Modeler](https://github.com/camunda/camunda-modeler) desktop app.
 
+> **Disclaimer:** This is an **unofficial** community extension. It is not affiliated with, endorsed by, or maintained by Camunda Services GmbH or the bpmn.io project.
+
 ## Features
 
 | Area | Status |
@@ -151,6 +153,31 @@ webpack.config.js     # extension + 2 webview bundles
 2. Zeebe / Camunda 8 moddle and deployment targets
 3. Element templates, linting (parity with Camunda Modeler plugins)
 
+## Publishing
+
+```bash
+npm install -g @vscode/vsce   # once
+npm run package               # production webpack build (also runs on prepublish)
+vsce package                  # produces bpmn-modeler-0.0.1.vsix
+vsce publish                  # after creating a Marketplace publisher
+```
+
+Before publishing, verify:
+
+- `publisher` in `package.json` matches your [Marketplace publisher](https://marketplace.visualstudio.com/manage)
+- Extension icon (`resources/logo.png`, 128×128) and file icons render in light/dark themes
+- [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) — bpmn.io watermark must stay visible in editors
+- README disclaimer is visible on the Marketplace listing
+
+## Legal & attribution
+
+| Asset | Notes |
+|-------|-------|
+| **bpmn-js / form-js** | [bpmn.io License](https://bpmn.io/license/) — watermark in canvas must remain visible |
+| **Extension icon** (`logo.png`) | bpmn.io brand mark — use only with clear “unofficial” disclaimer to avoid implying Camunda endorsement |
+| **File icons** (`resources/icons/`) | Generic BPMN/form glyphs, theme-tuned grays — not Camunda trademarks |
+| **Extension code** | MIT — see [LICENSE](LICENSE) |
+
 ## License
 
-MIT — see [LICENSE](LICENSE)
+MIT — see [LICENSE](LICENSE). Third-party notices: [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)

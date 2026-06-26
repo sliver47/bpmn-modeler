@@ -87,11 +87,6 @@ html, body {
 	background-color: #ffffff;
 }
 
-/* Hide the bpmn.io watermark logo */
-.bjs-powered-by {
-	display: none !important;
-}
-
 #properties {
 	width: 320px;
 	flex: 0 0 320px;

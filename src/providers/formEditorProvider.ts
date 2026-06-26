@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { logToOutput } from '../services/outputChannel';
 import { applyFullDocumentEdit } from '../utils/documentEdit';
+import { getFileIconPaths } from '../utils/fileIcons';
 import { buildWebviewHtml } from '../utils/webviewHtml';
 
 /** Custom text editor for Camunda .form files (JSON schema). */
@@ -21,6 +22,7 @@ export class FormEditorProvider implements vscode.CustomTextEditorProvider {
 			localResourceRoots: [vscode.Uri.joinPath(this.context.extensionUri, 'dist', 'webview')],
 		};
 
+		webviewPanel.iconPath = getFileIconPaths(this.context.extensionUri, 'form');
 		webviewPanel.webview.html = this.getHtml(webviewPanel.webview);
 
 		const updateWebview = () => {

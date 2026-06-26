@@ -57,12 +57,6 @@ html, body {
 	height: 100%;
 }
 
-/* Hide the bpmn.io / form-js watermark logo */
-#form-editor .fjs-powered-by,
-#form-editor .bjs-powered-by {
-	display: none !important;
-}
-
 /*
  * Custom collapsible layout.
  * We restructure the playground's 2x2 grid into two flex rows:
@@ -168,4 +162,31 @@ html, body {
 
 .pgl-collapse-btn:hover {
 	opacity: 0.7;
+}
+
+/*
+ * Pin the Preview panel's bpmn.io watermark to the bottom-right corner so it
+ * matches the Definition panel. The watermark stays fully visible per the
+ * bpmn.io License (https://bpmn.io/license/); we only reposition it.
+ *
+ * form-js anchors `.fjs-powered-by` (absolute) inside `.fjs-form`, which is only
+ * as tall as the form content. We stretch the preview container chain to full
+ * height so the watermark lands at the actual panel bottom instead of under the
+ * last field.
+ */
+#form-editor .pgl-section-preview > .body,
+#form-editor .pgl-section-preview .fjs-pgl-form-container,
+#form-editor .pgl-section-preview .fjs-pgl-form-container > .fjs-container {
+	height: 100%;
+}
+
+#form-editor .pgl-section-preview .fjs-container .fjs-form {
+	min-height: 100%;
+}
+
+#form-editor .pgl-section-preview .fjs-powered-by {
+	position: absolute;
+	right: 15px;
+	bottom: 15px;
+	margin: 0;
 }

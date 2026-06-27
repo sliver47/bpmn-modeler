@@ -1,3 +1,5 @@
+@import './theme.css';
+
 html, body {
 	margin: 0;
 	padding: 0;
@@ -48,8 +50,6 @@ html, body {
 	flex: 1 1 auto;
 	min-height: 0;
 	overflow: hidden;
-	/* form-js playground uses a light Carbon theme; keep its own background */
-	background: #fff;
 }
 
 /* The playground renders its own full layout; ensure it fills the host */

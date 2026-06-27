@@ -79,7 +79,7 @@ export class BpmnEditorProvider implements vscode.CustomTextEditorProvider {
 		</header>
 		<div class="workspace">
 			<div class="modeler-area">
-				<div id="canvas" aria-label="BPMN diagram canvas"></div>
+				<div id="canvas" class="pd-light-surface" aria-label="BPMN diagram canvas"></div>
 				<div class="log-panel collapsed" id="log-panel" aria-label="Output log">
 					<div class="log-header">
 						<span>Output</span>
@@ -88,7 +88,7 @@ export class BpmnEditorProvider implements vscode.CustomTextEditorProvider {
 					<div id="log-body"></div>
 				</div>
 			</div>
-			<aside id="properties" aria-label="Properties panel"></aside>
+			<aside id="properties" class="pd-light-surface pd-light-scrollbars" aria-label="Properties panel"></aside>
 		</div>
 	</div>`,
 		});

@@ -1,0 +1,46 @@
+/*
+ * Shared tokens for bpmn-js / form-js light surfaces inside VS Code webviews.
+ * These libraries ship fixed light (Carbon) themes; we pin an isolated light
+ * context so they don't partially inherit VS Code's dark theme variables.
+ */
+:root {
+	--pd-surface-bg: #fff;
+	--pd-surface-fg: #22242a;
+	--pd-surface-divider: #c8ccd2;
+	--pd-scrollbar-track: #f4f4f5;
+}
+
+.pd-light-surface {
+	background: var(--pd-surface-bg);
+	color: var(--pd-surface-fg);
+	color-scheme: light;
+}
+
+/* Mitigate VS Code-injected dark ::-webkit-scrollbar in dark IDE themes */
+.pd-light-surface ::-webkit-scrollbar,
+.pd-light-scrollbars ::-webkit-scrollbar {
+	width: 10px;
+	height: 10px;
+	background: var(--pd-scrollbar-track);
+}
+
+.pd-light-surface ::-webkit-scrollbar-track,
+.pd-light-surface ::-webkit-scrollbar-track-piece,
+.pd-light-surface ::-webkit-scrollbar-corner,
+.pd-light-scrollbars ::-webkit-scrollbar-track,
+.pd-light-scrollbars ::-webkit-scrollbar-track-piece,
+.pd-light-scrollbars ::-webkit-scrollbar-corner {
+	background: var(--pd-scrollbar-track);
+}
+
+.pd-light-surface ::-webkit-scrollbar-thumb,
+.pd-light-scrollbars ::-webkit-scrollbar-thumb {
+	background: rgba(0, 0, 0, 0.28);
+	border: 2px solid var(--pd-scrollbar-track);
+	border-radius: 5px;
+}
+
+.pd-light-surface ::-webkit-scrollbar-thumb:hover,
+.pd-light-scrollbars ::-webkit-scrollbar-thumb:hover {
+	background: rgba(0, 0, 0, 0.45);
+}

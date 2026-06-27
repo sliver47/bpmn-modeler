@@ -1,9 +1,9 @@
 {
-  "name": "bpmn-modeler",
-  "displayName": "BPMN Modeler",
+  "name": "process-designer",
+  "displayName": "Process Designer",
   "description": "BPMN and Camunda Form modeling in VS Code via webview. Unofficial community extension — not affiliated with Camunda or bpmn.io.",
-  "version": "0.0.1",
-  "publisher": "sliver47",
+  "version": "0.0.2",
+  "publisher": "RineSong",
   "license": "MIT",
   "icon": "resources/logo.png",
   "repository": {

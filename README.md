@@ -1,4 +1,6 @@
-# BPMN Modeler (VS Code Extension)
+# Process Designer (VS Code Extension)
+
+**Extension ID:** `RineSong.process-designer`
 
 Webview-based BPMN and Camunda Form editor for VS Code / Cursor — a lightweight alternative to the [Camunda Modeler](https://github.com/camunda/camunda-modeler) desktop app.
 
@@ -15,6 +17,26 @@ Webview-based BPMN and Camunda Form editor for VS Code / Cursor — a lightweigh
 | **Output** | In-editor log panel (BPMN); shared Output channel (does not auto-pop on errors) |
 | **DMN** | Not yet implemented |
 
+## Webview technology stack
+
+This extension does **not** use React or Vue in its own code. The webviews are plain **TypeScript + DOM**, bundled with **Webpack**:
+
+| Layer | What we write | What we embed |
+|-------|---------------|---------------|
+| **BPMN editor** (`src/webview/index.ts`) | Vanilla TS: `postMessage`, toolbar buttons, zoom/deploy | [bpmn-js](https://github.com/bpmn-io/bpmn-js) (diagram-js, SVG/DOM), properties panel, Camunda moddle |
+| **Form editor** (`src/webview/form.ts`) | Vanilla TS: layout tweaks, collapse toggles, save/sync | [@bpmn-io/form-js](https://github.com/bpmn-io/form-js) `FormPlayground` |
+| **UI framework inside libraries** | — | form-js editor/playground uses **Preact** internally (not authored by us); webpack aliases a single `preact` copy to avoid hook errors |
+
+**Extension host** (`src/extension.ts`, providers, services) runs in **Node.js** and uses the VS Code API only — no browser UI there.
+
+### Dark theme strategy
+
+bpmn-js and form-js ship **fixed light (Carbon) themes**. VS Code dark themes inject light foreground colors and `color-scheme: dark` into webviews, which breaks inputs, icons, and scrollbars if left unchecked.
+
+We isolate editor surfaces with `pd-light-surface` (`src/webview/theme.css`): white background, dark text, `color-scheme: light`. The outer toolbar/log areas still follow VS Code theme variables.
+
+**Known limitation:** In some dark themes, a form component-palette scrollbar may briefly flash a dark track on hover after scrolling (VS Code-injected `::-webkit-scrollbar` vs Chromium overlay scrollbars). Mitigations are in `theme.css` but not 100% reliable across all hosts.
+
 ## Architecture
 
 ```
@@ -30,6 +52,7 @@ Webview-based BPMN and Camunda Form editor for VS Code / Cursor — a lightweigh
 │  Webview (browser bundle)          src/webview/           │
 │  ├─ index.ts + webview.css    bpmn-js modeler             │
 │  ├─ form.ts + form.css        @bpmn-io/form-js playground │
+│  ├─ theme.css                 shared light-surface tokens │
 │  ├─ logger.ts, vscodeApi.ts   shared webview utilities    │
 │  └─ tsconfig.json             DOM types (separate from ext) │
 └───────────────────────────────────────────────────────────┘
@@ -64,9 +87,9 @@ npm install
 npm run compile
 ```
 
-Press **F5** to launch an Extension Development Host. Sample files live in `samples/`.
+Press **F5** in the extension project to launch an **Extension Development Host** (uses `dist/` directly). Sample files live in `samples/`.
 
-To open `.bpmn` / `.form` with the custom editor by default, add to workspace settings:
+To open `.bpmn` / `.form` with the custom editor by default:
 
 ```json
 {
@@ -122,15 +145,20 @@ src/
     outputChannel.ts
   utils/
     documentEdit.ts
+    fileIcons.ts
     getNonce.ts
     webviewHtml.ts
   webview/
-    index.ts          # BPMN entry
-    form.ts           # Form entry
+    index.ts          # BPMN entry (bpmn-js)
+    form.ts           # Form entry (form-js playground)
+    theme.css         # Light-surface tokens for dark IDE themes
     logger.ts
     vscodeApi.ts
     webview.css
     form.css
+resources/
+  logo.png
+  icons/light|dark/
 samples/
   empty.bpmn
   empty.form
@@ -156,16 +184,20 @@ webpack.config.js     # extension + 2 webview bundles
 ## Publishing
 
 ```bash
-npm install -g @vscode/vsce   # once
-npm run package               # production webpack build (also runs on prepublish)
-vsce package                  # produces bpmn-modeler-0.0.1.vsix
-vsce publish                  # after creating a Marketplace publisher
+npm run package
+npm_config_registry=https://registry.npmjs.org npx @vscode/vsce package --no-dependencies
+# → process-designer-x.y.z.vsix
+
+vsce login RineSong
+vsce publish --no-dependencies          # VS Code Marketplace
+
+# Cursor / VSCodium also need Open VSX (Eclipse account + Publisher Agreement):
+npx ovsx publish process-designer-x.y.z.vsix -p <OpenVSX-Token>
 ```
 
 Before publishing, verify:
 
-- `publisher` in `package.json` matches your [Marketplace publisher](https://marketplace.visualstudio.com/manage)
-- Extension icon (`resources/logo.png`, 128×128) and file icons render in light/dark themes
+- `publisher` is `RineSong`, `name` is `process-designer`
 - [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) — bpmn.io watermark must stay visible in editors
 - README disclaimer is visible on the Marketplace listing
 
@@ -174,8 +206,8 @@ Before publishing, verify:
 | Asset | Notes |
 |-------|-------|
 | **bpmn-js / form-js** | [bpmn.io License](https://bpmn.io/license/) — watermark in canvas must remain visible |
-| **Extension icon** (`logo.png`) | bpmn.io brand mark — use only with clear “unofficial” disclaimer to avoid implying Camunda endorsement |
-| **File icons** (`resources/icons/`) | Generic BPMN/form glyphs, theme-tuned grays — not Camunda trademarks |
+| **Extension icon** (`logo.png`) | Use with clear “unofficial” disclaimer |
+| **File icons** (`resources/icons/`) | Generic BPMN/form glyphs — not Camunda trademarks |
 | **Extension code** | MIT — see [LICENSE](LICENSE) |
 
 ## License

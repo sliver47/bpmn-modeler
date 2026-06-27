@@ -67,7 +67,7 @@ export class FormEditorProvider implements vscode.CustomTextEditorProvider {
 			<span class="hint">Tip: click a panel title to collapse it</span>
 			<span id="status" class="status"></span>
 		</header>
-		<div id="form-editor" aria-label="Form editor canvas"></div>
+		<div id="form-editor" class="pd-light-surface pd-light-scrollbars" aria-label="Form editor canvas"></div>
 	</div>`,
 		});
 	}

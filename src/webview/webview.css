@@ -1,3 +1,5 @@
+@import './theme.css';
+
 html, body {
 	margin: 0;
 	padding: 0;
@@ -84,15 +86,14 @@ html, body {
 }
 
 .djs-container {
-	background-color: #ffffff;
+	background-color: var(--pd-surface-bg);
 }
 
 #properties {
 	width: 320px;
 	flex: 0 0 320px;
-	border-left: 1px solid var(--vscode-panel-border, #444);
+	border-left: 1px solid var(--pd-surface-divider);
 	overflow: auto;
-	background: var(--vscode-sideBar-background, #252526);
 }
 
 .log-panel {
@@ -155,19 +156,3 @@ html, body {
 	color: var(--vscode-errorForeground, #f48771);
 }
 
-/* properties panel theme tweaks for VS Code dark/light */
-.bio-properties-panel {
-	--color-grey-225-10-15: var(--vscode-foreground);
-	--color-grey-225-10-35: var(--vscode-descriptionForeground);
-	--color-grey-225-10-55: var(--vscode-panel-border, #555);
-	--color-grey-225-10-75: var(--vscode-input-border, #666);
-	--color-grey-225-10-80: var(--vscode-input-background);
-	--color-grey-225-10-90: var(--vscode-sideBar-background);
-	--color-grey-225-10-95: var(--vscode-editor-background);
-	--color-grey-225-10-97: var(--vscode-editor-background);
-	--color-white: var(--vscode-editor-background);
-	--color-black: var(--vscode-foreground);
-	--color-blue-205-100-45: var(--vscode-focusBorder, #007acc);
-	--color-blue-205-100-50: var(--vscode-button-background);
-	--color-blue-205-100-85: var(--vscode-list-hoverBackground);
-}

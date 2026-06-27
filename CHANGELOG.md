@@ -1,6 +1,16 @@
 # Change Log
 
-All notable changes to the "bpmn-modeler" extension are documented in this file.
+All notable changes to the "Process Designer" extension are documented in this file.
+
+## [0.0.2] - 2026-06-27
+
+### Fixed
+
+- Dark theme: form editor (definition/preview/input/output) now renders as a consistent light surface instead of inheriting partial dark styling (grey titles, unreadable inputs)
+- Dark theme: BPMN properties panel inputs (e.g. ID field) are now readable (pinned to the tested light theme)
+- Dark theme: BPMN canvas palette/context-pad icons no longer appear faint/disabled (icons pinned to dark on the white canvas)
+- Properties panel left divider is now always visible against the white canvas
+- Form component palette scrollbar no longer flashes a black track on hover in dark theme
 
 ## [0.0.1] - 2026-06-26
 
